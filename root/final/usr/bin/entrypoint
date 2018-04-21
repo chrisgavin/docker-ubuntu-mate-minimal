@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+set -eu
+[ -e "$HOME/.config" ] || cp -R /etc/skel/. $HOME/
+exec $*
