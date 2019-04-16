@@ -12,6 +12,7 @@ RUN apt-get update && \
 	dpkg -l | tr -s " " | cut -d " " -f 2 | sort > /tmp/installed-packages.txt && \
 	packages_to_remove="$(comm -12 /tmp/cleaned-minimal-remove.txt /tmp/installed-packages.txt)" && \
 	echo "$packages_to_remove" | xargs apt-get remove -y && \
+	apt-get autoremove -y && \
 	rm -rf /tmp/* /var/lib/apt/lists/*
 COPY ./root/final/ /
 ENTRYPOINT ["/usr/bin/entrypoint"]
